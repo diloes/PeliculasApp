@@ -1,8 +1,14 @@
 import {createStackNavigator} from '@react-navigation/stack';
 import {HomeScreen} from '../screens/HomeScreen';
 import {DetailScreen} from '../screens/DetailScreen';
+import {Movie} from '../interfaces/movieInterface';
 
-const Stack = createStackNavigator();
+export type RootStackParams = {
+  HomeScreen: undefined;
+  DetailScreen: Movie;
+};
+
+const Stack = createStackNavigator<RootStackParams>();
 
 export const Navigation = () => {
   return (
@@ -14,7 +20,11 @@ export const Navigation = () => {
         },
       }}>
       <Stack.Screen name="HomeScreen" component={HomeScreen} />
-      <Stack.Screen name="DetailScreen" component={DetailScreen} />
+      <Stack.Screen
+        name="DetailScreen"
+        options={{cardStyle: {backgroundColor: '#ae32'}}} // aplicamos esta screen concreta un fondo distinto
+        component={DetailScreen}
+      />
     </Stack.Navigator>
   );
 };
