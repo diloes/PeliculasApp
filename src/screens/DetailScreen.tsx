@@ -8,29 +8,29 @@ import {
   ActivityIndicator,
   TouchableOpacity,
 } from 'react-native';
-import {StackScreenProps} from '@react-navigation/stack';
-import {ScrollView} from 'react-native-gesture-handler';
-import {RootStackParams} from '../navigation/Navigation';
+import { StackScreenProps } from '@react-navigation/stack';
+import { ScrollView } from 'react-native-gesture-handler';
+import { RootStackParams } from '../navigation/Navigation';
 
-import {useMovieDetails} from '../hooks/useMovieDetails';
-import {MovieDetails} from '../components/MovieDetails';
+import { useMovieDetails } from '../hooks/useMovieDetails';
+import { MovieDetails } from '../components/MovieDetails';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 const screenHight = Dimensions.get('screen').height;
 
 interface Props extends StackScreenProps<RootStackParams, 'DetailScreen'> {}
 
-export const DetailScreen = ({route, navigation}: Props) => {
+export const DetailScreen = ({ route, navigation }: Props) => {
   const movie = route.params;
   const uri = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
 
-  const {isLoading, cast, movieFull} = useMovieDetails(movie.id);
+  const { isLoading, cast, movieFull } = useMovieDetails(movie.id);
 
   return (
     <ScrollView>
       <View style={styles.imageContainer}>
         <View style={styles.imageBorder}>
-          <Image source={{uri}} style={styles.posterImage} />
+          <Image source={{ uri }} style={styles.posterImage} />
         </View>
       </View>
 
@@ -40,7 +40,7 @@ export const DetailScreen = ({route, navigation}: Props) => {
       </View>
 
       {isLoading ? (
-        <ActivityIndicator size={35} color="grey" style={{marginTop: 20}} />
+        <ActivityIndicator size={35} color="grey" style={{ marginTop: 20 }} />
       ) : (
         <MovieDetails movieFull={movieFull!} cast={cast} />
       )}

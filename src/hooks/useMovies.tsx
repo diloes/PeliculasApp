@@ -1,6 +1,6 @@
-import {useEffect, useState} from 'react';
+import { useEffect, useState } from 'react';
 import movieDB from '../api/movieDB';
-import {MovieDBMoviesResponse, Movie} from '../interfaces/movieInterface';
+import { MovieDBMoviesResponse, Movie } from '../interfaces/movieInterface';
 
 interface MoviesState {
   nowPlaying: Movie[];
@@ -46,5 +46,5 @@ export const useMovies = () => {
     getMovies();
   }, []);
 
-  return {...moviesState, isLoading};
+  return { ...moviesState, isLoading };
 };
